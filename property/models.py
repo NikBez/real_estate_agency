@@ -50,7 +50,7 @@ class Flat(models.Model):
         db_index=True)
 
     new_building = models.BooleanField("Новостройка", null=True)
-    likes = models.ManyToManyField(User)
+    likes = models.ManyToManyField(User, blank=True)
 
     owner_pure_phone = PhoneNumberField("Нормализованный номер владельца", blank=True)
 

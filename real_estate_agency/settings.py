@@ -102,4 +102,6 @@ DATABASES = {
         os.getenv('DATABASE', 'sqlite:///db.sqlite3')
     ),
 }
-PHONENUMBER_DEFAULT_REGION = "RU"
+
+PHONENUMBER_DEFAULT_FORMAT = "E164"
+PHONENUMBER_DB_FORMAT = "E164"
