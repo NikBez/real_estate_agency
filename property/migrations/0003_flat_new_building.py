@@ -29,5 +29,5 @@ class Migration(migrations.Migration):
             name='new_building',
             field=models.BooleanField(null=True, verbose_name='Новостройка'),
         ),
-        migrations.RunPython(fill_new_building),
+        migrations.RunPython(fill_new_building, move_backward),
     ]

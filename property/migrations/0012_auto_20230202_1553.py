@@ -25,5 +25,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(link_owner_in_flat)
+        migrations.RunPython(link_owner_in_flat, reverse_code=move_backward)
     ]

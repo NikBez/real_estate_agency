@@ -43,5 +43,5 @@ class Migration(migrations.Migration):
             name='owner_pure_phone',
             field=phonenumber_field.modelfields.PhoneNumberField(blank=True, max_length=128, region=None, verbose_name='Нормализованный номер владельца'),
         ),
-        migrations.RunPython(fill_phone_numbers)
+        migrations.RunPython(fill_phone_numbers, move_backward)
     ]

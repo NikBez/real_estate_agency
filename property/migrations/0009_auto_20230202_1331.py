@@ -25,5 +25,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(create_owners_from_flats)
+        migrations.RunPython(create_owners_from_flats, move_backward)
     ]
