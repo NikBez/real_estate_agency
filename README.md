@@ -5,7 +5,7 @@
 ## Запуск
 
 - Скачайте код
-- Установите зависимости командой `pip install -r requirements.txt`
+- Установите зависимости командой `pipenv install`
 - Создайте файл базы данных и сразу примените все миграции командой `python3 manage.py migrate`
 - Запустите сервер командой `python3 manage.py runserver`
 
