@@ -5,16 +5,17 @@ from django.db import migrations
 def link_owner_in_flat(apps, schema_editor):
     Flat = apps.get_model('property', 'Flat')
     Owner = apps.get_model('property', "Owner")
-    for flat in Flat.objects.all():
-        owners = Owner.objects.filter(name=flat.owner, pure_phone=flat.owner_pure_phone)
-        for owner in owners:
-            flat.owners.add(owner)
+    flats = Flat.objects.all()
+    for flat in flats.iterator():
+        flat_owners = Owner.objects.filter(name=flat.owner, pure_phone=flat.owner_pure_phone)
+        flat.owners.set(flat_owners)
         flat.save()
 
 
 def move_backward(apps, schema_editor):
     Flat = apps.get_model('property', "Flat")
-    for flat in Flat.objects.all():
+    flats = Flat.objects.all()
+    for flat in flats.iterator():
         flat.owners.clear()
         flat.save()
 

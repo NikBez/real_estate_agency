@@ -48,7 +48,7 @@ class Flat(models.Model):
         db_index=True)
 
     new_building = models.BooleanField("Новостройка", null=True)
-    likes = models.ManyToManyField(User, blank=True, related_name="flats_like")
+    likes = models.ManyToManyField(User, blank=True, related_name="flat_likes")
 
 
     def __str__(self):

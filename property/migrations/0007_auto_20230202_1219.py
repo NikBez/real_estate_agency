@@ -9,7 +9,8 @@ import phonenumbers
 
 def fill_phone_numbers(apps, schema_editor):
     Flat = apps.get_model('property', 'Flat')
-    for flat in Flat.objects.all():
+    flats = Flat.objects.all()
+    for flat in flats.iterator():
         parset_phone = phonenumbers.parse(flat.owners_phonenumber, "RU")
         if phonenumbers.is_possible_number(parset_phone) and phonenumbers.is_valid_number(parset_phone):
             flat.owner_pure_phone = phonenumbers.format_number(parset_phone, phonenumbers.PhoneNumberFormat.E164)
@@ -21,7 +22,8 @@ def fill_phone_numbers(apps, schema_editor):
 
 def move_backward(apps, schema_editor):
     Flat = apps.get_models("property", "Flat")
-    for flat in Flat.objects.all():
+    flats = Flat.objects.all()
+    for flat in flats.iterator():
         flat.owner_pure_phone = ''
         flat.save()
 

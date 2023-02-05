@@ -7,10 +7,14 @@ def create_owners_from_flats(apps, schema_editor):
     Flat = apps.get_model('property', 'Flat')
     Owner = apps.get_model('property', "Owner")
 
-    for flat in Flat.objects.exclude(owner=""):
-        if not Owner.objects.filter(name=flat.owner).exists():
-            owner = Owner.objects.create(name=flat.owner, phone=flat.owners_phonenumber, pure_phone=flat.owner_pure_phone)
-            owner.flats.add(flat)
+    for flat in Flat.objects.exclude(owner__isnull=True):
+        defaults = {
+            'name': flat.owner,
+            'phone': flat.owners_phonenumber,
+            'pure_phone': flat.owner_pure_phone,
+        }
+        owner = Owner.objects.update_or_create(name=flat.owner, defaults=defaults)
+        owner.flats.add(flat)
 
 
 def move_backward(apps, schema_editor):
