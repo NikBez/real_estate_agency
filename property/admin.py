@@ -3,7 +3,7 @@ from .models import Flat, Complaint, Owner
 
 
 class OwnersInline(admin.TabularInline):
-    model = Flat.owners.through
+    model = Owner.flats.through
     extra = 1
     raw_id_fields=["owner"]
 
@@ -15,7 +15,7 @@ class FlatAdmin(admin.ModelAdmin):
     readonly_fields = ['created_at']
     list_editable = ['new_building']
     list_filter = ['new_building', 'has_balcony', 'rooms_number']
-    raw_id_fields = ['likes', 'owners']
+    raw_id_fields = ['likes',]
     inlines = [
         OwnersInline,
     ]
